@@ -28,12 +28,14 @@ describe('ProblemeComponent', () => {
     let zone = component.problemeForm.get('prenom');
     zone.setValue('a'.repeat(2));
     let errors = zone.errors || {};
+    //toBeTruthy() == expects recevoir une erreur
     expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   });
   it('#2 Zone PRÉNOM valide avec 3 caractères', () =>{
     let zone = component.problemeForm.get('prenom');
     zone.setValue('a'.repeat(3));
     let errors = zone.errors || {};
+    //ToBeFalsy() === expects recevoir pas d'erreur
     expect(errors['nbreCaracteresInsuffisant']).toBeFalsy();
   });
   it('#3 Zone PRÉNOM valide avec 200 caractères', () =>{
@@ -44,7 +46,7 @@ describe('ProblemeComponent', () => {
   });
   it('#4 Zone PRÉNOM invalide avec aucune valeur', () =>{
     let zone = component.problemeForm.get('prenom');
-    zone.setValue('');
+  
     let errors = zone.errors || {};
     expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   });

@@ -8,11 +8,15 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { LongueurMinimumComponent } from './longueur-minimum/longueur-minimum.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ProblemeComponent,
-    AccueilComponent
+    AccueilComponent,
+
+    LongueurMinimumComponent
   ],
   imports: [
     BrowserModule,
