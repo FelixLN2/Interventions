@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LongueurMinimumComponent } from './longueur-minimum/longueur-minimum.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TypeproblemeService } from './probleme/typeprobleme.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProblemeData } from './probleme/probleme-data';
 
 @NgModule({
   declarations: [
@@ -21,10 +25,11 @@ import { LongueurMinimumComponent } from './longueur-minimum/longueur-minimum.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule .forRoot(ProblemeData, { delay: 1000 })
   ],
-  providers: [],
+  providers: [TypeproblemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

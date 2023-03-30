@@ -29,14 +29,14 @@ it('#8 | Une phrase avec des mots est valide', () => {
     let control = { value: 'Vive angular' }
     let validatorFn = LongueurMinimumComponent.longueurMinimum(3);
     let result = validatorFn(control as AbstractControl);
-    expect(result['nbreCaracteresInsuffisant']).toBeFalsy();
+    expect(result).toBeNull();
 });
 
 it('#9 | Une phrase avec 3 espaces, des mots et ensuite 3 espaces est valide', () => {
     let control = { value: ' je le veux ' }
     let validatorFn = LongueurMinimumComponent.longueurMinimum(3);
     let result = validatorFn(control as AbstractControl);
-    expect(result['nbreCaracteresInsuffisant']).toBeFalsy();
+    expect(result).toBeNull();
 });
 it('#10 | Une phrase avec 1 espace et 2 caractères est invalide.', () => {
     let control = { value: ' xx' }
@@ -50,17 +50,17 @@ it('#11 | Une phrase avec 2 espaces et 1 caractère est invalide', () => {
     let result = validatorFn(control as AbstractControl);
     expect(result['nbreCaracteresInsuffisant']).toBeTruthy();
 });
-it('#12 | Une phrase avec 3 espaces et 3 caractères est valide', () => {
+it('#12 | Une phrase avec 3 espa0ces et 3 caractères est valide', () => {
     let control = { value: ' xxx' }
     let validatorFn = LongueurMinimumComponent.longueurMinimum(3);
     let result = validatorFn(control as AbstractControl);
-    expect(result['nbreCaracteresInsuffisant']).toBeFalsy();
+    expect(result).toBeNull();
 });
 it('#13 | Une phrase avec 5 espaces, 5 caractères et 5 espaces est valide', () => {
     let control = { value: '     xxxxx     ' }
     let validatorFn = LongueurMinimumComponent.longueurMinimum(3);
     let result = validatorFn(control as AbstractControl);
-    expect(result['nbreCaracteresInsuffisant']).toBeFalsy();
+    expect(result).toBeNull();
 });
 it('#14 | Une chaîne nulle est invalide', () => {
     let control = { value: '' }

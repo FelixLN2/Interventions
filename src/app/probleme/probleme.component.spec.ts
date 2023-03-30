@@ -1,7 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProblemeComponent } from './probleme.component';
+import { TypeproblemeService } from './typeprobleme.service';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
@@ -9,8 +11,9 @@ describe('ProblemeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule], //ajouté
-      declarations: [ ProblemeComponent ]
+      imports: [ReactiveFormsModule, HttpClientModule], //ajouté
+      declarations: [ ProblemeComponent ],
+      providers:[TypeproblemeService]
     })
     .compileComponents();
 
@@ -63,6 +66,46 @@ describe('ProblemeComponent', () => {
     let errors = zone.errors || {};
     expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   }); 
+  it('#15 | Zone TELEPHONE est désactivée quand ne pas me notifier', () =>{
+     component.appliquerNotifications('pasnotification');
+
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.disabled).toBeTruthy();
+  }); 
+  it('#16 | Zone TELEPHONE est vide quand ne pas me notifier', () =>{
+    component.appliquerNotifications('pasnotification');
+
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.disabled).toBeTruthy();
+  }); 
+  it('#17 | Zone ADRESSE COURRIEL est désactivée quand ne pas me notifier', () =>{
+    component.appliquerNotifications('pasnotification');
+
+    let zone = component.problemeForm.get('courriel');
+    expect(zone.disabled).toBeTruthy();
+  }); 
+  it('#18 | Zone CONFIRMER COURRIEL est désactivée quand ne pas me notifier', () =>{
+    component.appliquerNotifications('pasnotification');
+
+    let zone = component.problemeForm.get('courrielConfirmation');
+    expect(zone.disabled).toBeTruthy();
+  }); 
+  // it('Zone DATE COMMANDE est désactivée si ramasser au comptoir', () =>{
+  //   component.gestionDates('RamasseComptoir');
+
+  //   let zone = component.problemeForm.get('datesGroup.dateCommande');
+  //   expect(zone.status).toEqual('DISABLED');
+  //   // zone.setValue('  a');
+
+  //   // let errors = zone.errors || {};
+  //   // expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
+  // }); 
+  // it('ZONE DATE COMMANDE est activée si ParLaPoste', () =>{
+  //   component.gestionDates('ParLaPoste');
+
+  //   let zone = component.problemeForm.get('datesGroup.dateCommande');
+  //   expect(zone.status).toEqual('DISABLED');
+  // }); 
 
 
 });
