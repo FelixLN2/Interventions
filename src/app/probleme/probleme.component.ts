@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LongueurMinimumComponent } from '../longueur-minimum/longueur-minimum.component';
+import { LongueurMinimumComponent } from '../shared/longueur-minimum/longueur-minimum.component';
 import { ITypeProbleme } from './ITypeProbleme';
 import { TypeproblemeService } from './typeprobleme.service';
 
@@ -25,9 +25,9 @@ ngOnInit(){
     prenom: ['' , [LongueurMinimumComponent.longueurMinimum(3), Validators.required]],
     noTypeProbleme: ['', Validators.required], 
     courrielGroup: this.fb.group({
-    courriel: [{value: '', disabled: true}],
-    courrielConfirmation: [{value: '', disabled: true}],
-  }),
+      courriel: [{value: '', disabled: true}],
+      courrielConfirmation: [{value: '', disabled: true}],
+    }),
     telephone: [{value: '', disabled: true}],
   });
     
@@ -46,21 +46,21 @@ ngOnInit(){
     const telephoneControl = this.problemeForm.get('telephone'); 
     // Tous remettre à zéro
 
-    // courrielGroupControl.clearValidators();
-    // courrielGroupControl.reset();  // Pour enlever les messages d'erreur si le controle contenait des données invaldides
-    // courrielGroupControl.disable();  
+     courrielGroupControl.clearValidators();
+     courrielGroupControl.reset();  // Pour enlever les messages d'erreur si le controle contenait des données invaldides
+     courrielGroupControl.disable();  
 
-    // courrielControl.clearValidators();
-    // courrielControl.reset(); 
-    // courrielControl.disable();  
+     courrielControl.clearValidators();
+     courrielControl.reset(); 
+     courrielControl.disable();  
 
-    // courrielConfirmationControl.clearValidators();
-    // courrielConfirmationControl.reset();    
-    // courrielConfirmationControl.disable();
+     courrielConfirmationControl.clearValidators();
+     courrielConfirmationControl.reset();    
+     courrielConfirmationControl.disable();
 
-    // telephoneControl.clearValidators();
-    // telephoneControl.reset();    
-    // telephoneControl.disable();
+     telephoneControl.clearValidators();
+     telephoneControl.reset();    
+     telephoneControl.disable();
 
     // if (typeNotifications === 'pasnotification') {   
     //         dateCommandeControl.setValidators([Validators.required]);      
@@ -79,6 +79,17 @@ ngOnInit(){
     //       dateCommandeControl.disable();           
     //     }
     //   }
+
+        if(typeNotifications === 'courriel'){
+          courrielGroupControl.enable();
+          courrielControl.enable();
+          courrielConfirmationControl.enable();
+        }
+        if(typeNotifications === 'telephone'){
+          telephoneControl.enable();
+        }
+        
+
     courrielControl.updateValueAndValidity();   
     courrielConfirmationControl.updateValueAndValidity();  
     telephoneControl.updateValueAndValidity();       

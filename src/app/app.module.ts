@@ -8,11 +8,12 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { LongueurMinimumComponent } from './longueur-minimum/longueur-minimum.component';
+import { LongueurMinimumComponent } from './shared/longueur-minimum/longueur-minimum.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypeproblemeService } from './probleme/typeprobleme.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProblemeData } from './probleme/probleme-data';
+import { EmailMatcherComponent } from './shared/email-matcher/email-matcher.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProblemeData } from './probleme/probleme-data';
     ProblemeComponent,
     AccueilComponent,
 
-    LongueurMinimumComponent
+    LongueurMinimumComponent,
+     EmailMatcherComponent
   ],
   imports: [
     BrowserModule,
