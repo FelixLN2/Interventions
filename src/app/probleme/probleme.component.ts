@@ -106,6 +106,7 @@ export class ProblemeComponent implements OnInit {
       courrielConfirmationControl.enable();
     }
     if (typeNotifications === 'telephone') {
+      telephoneControl.setValidators([Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10), Validators.required]);
       telephoneControl.enable();
     }
 
