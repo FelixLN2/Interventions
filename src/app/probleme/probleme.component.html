@@ -45,8 +45,8 @@
           </div>
       
          <!-- Zone de texte NOM -->
-          <div class="form-group row">
-            <div class="col-md-10">
+          <div class="col-sm-10">
+            <div>
               <label for="nomId" class="col-md-2 col-form-label text-right">Nom :</label>
 
               <input class="form-control" id="nomId" type="text" placeholder="Votre nom ici (obligatoire)"
@@ -71,12 +71,12 @@
           </div>
 <!-- Liste déroulante du type de PROBLEME --> 
           <div class="form-group row">
-            <label class="col-md-2 col-form-label text-right"> Type de Problème : </label>
+            <label class=" col-form-label text-right"> Type de Problème : </label>
             <div class="col-sm-10">
               <select class="form-control"
               id="noTypeProblemeId"
               >
-              <option value="">Sélectionner un type de problème</option>
+              <option  value="">Sélectionner un type de problème</option>
               <option *ngFor="let probleme of typesProbleme" [value]="probleme.id">{{probleme.descriptionTypeProbleme}}</option>
             </select>
             </div>
