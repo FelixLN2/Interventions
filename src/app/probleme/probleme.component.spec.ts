@@ -87,9 +87,7 @@ describe('ProblemeComponent', () => {
   }); 
   it('#18 | Zone CONFIRMER COURRIEL est désactivée quand ne pas me notifier', () =>{
     component.appliquerNotifications('pasnotification');
-    
-    let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');
-                        
+    let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');             
     expect(zone.disabled).toBeTruthy();
 
 
@@ -126,22 +124,22 @@ describe('ProblemeComponent', () => {
     expect(zone.status).toEqual('INVALID'); 
   });
   it('#25 | Zone ADRESSE COURRIEL sans valeur et Zone CONFIRMER COURRIEL avec valeur valide retourne null', () => {
-    component.appliquerNotifications('pasnotification');
+    component.appliquerNotifications('courriel');
     let zone = component.problemeForm.get('telephone');
     expect(zone.status).toEqual('DISABLED'); 
   });
   it('#26 | Zone ADRESSE COURRIEL avec valeur valide et Zone CONFIRMER COURRIEL sans valeur retourne null', () => {
-    component.appliquerNotifications('pasnotification');
+    component.appliquerNotifications('courriel');
     let zone = component.problemeForm.get('telephone');
     expect(zone.status).toEqual('DISABLED'); 
   });
   it('#27 | Zones ADRESSE COURRIEL et CONFIRMER COURRIEL sont invalides si les valeurs sont différentes quand notifier par courriel', () => {
-    component.appliquerNotifications('pasnotification');
+    component.appliquerNotifications('courriel');
     let zone = component.problemeForm.get('telephone');
     expect(zone.status).toEqual('DISABLED'); 
   });
   it('#28 | Zones ADRESSE COURRIEL et CONFIRMER COURRIEL sont valides si les valeurs sont identiques quand notifier par courriel', () => {
-    component.appliquerNotifications('pasnotification');
+    component.appliquerNotifications('courriel');
     let zone = component.problemeForm.get('telephone');
     expect(zone.status).toEqual('DISABLED'); 
   });
