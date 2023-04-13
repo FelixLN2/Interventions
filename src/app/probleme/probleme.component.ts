@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LongueurMinimumComponent } from '../shared/longueur-minimum/longueur-minimum.component';
 import { ITypeProbleme } from './ITypeProbleme';
 import { TypeproblemeService } from './typeprobleme.service';
-
+import { EmailMatcherComponent } from '../shared/email-matcher/email-matcher.component';
 
 @Component({
   selector: 'Inter-probleme',
@@ -28,7 +28,7 @@ export class ProblemeComponent implements OnInit {
       courrielGroup: this.fb.group({
         courriel: [{ value: '', disabled: true }],
         courrielConfirmation: [{ value: '', disabled: true }],
-      }),
+      }), 
       telephone: [{ value: '', disabled: true }],
     });
 
@@ -97,9 +97,10 @@ export class ProblemeComponent implements OnInit {
     //   }
 
     if (typeNotifications === 'courriel') {
-      courrielGroupControl.setValidators([Validators.required]);
+      courrielGroupControl.setValidators([Validators.compose([EmailMatcherComponent.courrielDifferents()])])
       courrielGroupControl.enable();
-      courrielControl.setValidators([Validators.required]);
+      courrielControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
+      
       courrielControl.enable();
       courrielConfirmationControl.setValidators([Validators.required]);
       courrielConfirmationControl.enable();
