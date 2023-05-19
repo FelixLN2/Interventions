@@ -4,6 +4,7 @@ import { LongueurMinimumComponent } from '../shared/longueur-minimum/longueur-mi
 import { ITypeProbleme } from './ITypeProbleme';
 import { TypeproblemeService } from './typeprobleme.service';
 import { EmailMatcherComponent } from '../shared/email-matcher/email-matcher.component';
+import { IProbleme } from './probleme';
 
 @Component({
   selector: 'Inter-probleme',
@@ -15,8 +16,8 @@ export class ProblemeComponent implements OnInit {
   problemeForm: FormGroup;
   typesProbleme: ITypeProbleme[];
   errorMessage: string;
-  save(): void {
-  }
+  probleme: IProbleme;
+  messageSauvegarde: string;
 
   constructor(private fb: FormBuilder, private typeproblemeService: TypeproblemeService) { }
 
@@ -91,6 +92,32 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.updateValueAndValidity();
   }
 
+  save(): void {
+    if (this.problemeForm.dirty && this.problemeForm.valid) {
+        // Copy the form values over the problem object values
+        this.probleme = this.problemeForm.value;
+        this.probleme.id = 0;
+        // Courriel est dans un groupe alors que this.probleme n'a pas de groupe.  Il faut le transférer explicitement.
+         if(this.problemeForm.get('courrielGroup.courriel').value != '')
+        {
+          this.probleme.courriel = this.problemeForm.get('courrielGroup.courriel').value;
+        }
+    
+        this.problemeService.saveProbleme(this.probleme)
+            .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.errorMessage = err
+          })
+    } else if (!this.problemeForm.dirty) {
+        this.onSaveComplete();
+    }
+  }
+  
+  onSaveComplete(): void {
+    // Reset the form to clear the flags
+    this.problemeForm.reset();  // Pour remettre Dirty à false.  Autrement le Route Guard va dire que le formulaire n'est pas sauvegardé
+    this.route.navigate(['/accueil']);
+  }
 }
 
 
@@ -127,3 +154,4 @@ export class ProblemeComponent implements OnInit {
     //       dateCommandeControl.disable();           
     //     }
     //   }
+    
